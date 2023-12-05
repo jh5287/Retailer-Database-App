@@ -1,95 +1,67 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+// use this to query your db
+import client from "@/db"
+import UsersClient from "@/components/UsersClient"
 
-export default function Home() {
+
+
+const getUsers = async () => {
+  const queryResult = await client.query("SELECT * FROM users")
+  const rows = queryResult.rows
+  const users = []
+  for (const row of rows) {
+    const newUser = {
+      id: row.id,
+      username: row.username,
+      email: row.email,
+      age: row.age
+    }
+    users.push(newUser)
+  }
+
+  return users
+
+
+
+}
+
+
+
+
+export default async  function Home() {
+  let initialUsers = await getUsers()
+  if (initialUsers.length === 0) { 
+
+    // if not users exist, let's add some sample users ourself
+    const insertQuery = `INSERT INTO users (username, email, age) VALUES ($1, $2, $3) RETURNING *`
+    const usersToInsert = [
+      {
+        username: "John",
+        email: "john.doe@gmail.com",
+        age: 30
+      },
+      {
+        username: "Methuselah",
+        email: "godlives@gmail.com",
+        age: 969
+      }
+    ]
+    for (const user of usersToInsert) {
+      // insert users one by one (not efficient but too lazy to rewrite)
+      await client.query(insertQuery, [user.username, user.email, user.age])
+    }
+
+    initialUsers = await getUsers()
+  }
+
+
+
+  
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <div className="home">
+      <p>Notice that I am an async functional component. This means that I run on the server</p>
+      <p>First I fetch all users from the database, and then I pass them as props to a client component</p>
+      <UsersClient initialUsers={initialUsers} />
+    </div>
   )
 }
