@@ -17,11 +17,7 @@ const getUsers = async () => {
     }
     users.push(newUser)
   }
-
   return users
-
-
-
 }
 
 
@@ -29,25 +25,27 @@ const getUsers = async () => {
 
 export default async  function Home() {
   let initialUsers = await getUsers()
-  if (initialUsers.length === 0) { 
+  if (initialUsers.length === 1) { 
 
     // if not users exist, let's add some sample users ourself
-    const insertQuery = `INSERT INTO users (username, email, age) VALUES ($1, $2, $3) RETURNING *`
+    const insertQuery = `INSERT INTO users (id, username, email, age) VALUES ($1, $2, $3, $4) RETURNING *`
     const usersToInsert = [
       {
+        id: 3456,
         username: "John",
         email: "john.doe@gmail.com",
         age: 30
       },
       {
+        id: 4567,
         username: "Methuselah",
         email: "godlives@gmail.com",
-        age: 969
+        age: 69
       }
     ]
     for (const user of usersToInsert) {
       // insert users one by one (not efficient but too lazy to rewrite)
-      await client.query(insertQuery, [user.username, user.email, user.age])
+      await client.query(insertQuery, [user.id, user.username, user.email, user.age])
     }
 
     initialUsers = await getUsers()

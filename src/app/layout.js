@@ -1,7 +1,7 @@
 
 
 export const metadata = {
-  title: 'This is the name of your app',
+  title: 'Retailer Database App',
   description: 'I created dis app',
 }
 
