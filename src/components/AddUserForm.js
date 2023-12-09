@@ -13,7 +13,7 @@ const Form = ({setUsers}) => {
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
-          const response = await axios.post("/api/user", {
+          const response = await axios.post("/api/user/addUser", {
                 id,
                 username,
                 email,

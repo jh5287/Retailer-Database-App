@@ -17,7 +17,7 @@ const DeleteUserForm = ({setUsers}) => {
             const selectedUser = response.data.users
             console.log("fetched user data by ID ", selectedUser)
             console.log("selected user ", selectedUser)
-            const deletedUser = await axios.delete(`api/user/editUser/deleteUser/${selectedUser}`)
+            const deletedUser = await axios.delete(`api/user/deleteUser/${selectedUser}`)
             console.log("deleted user ", deletedUser.data.user)
             const usersResponse = await axios.get("/api/search/allUsers")
             const users = usersResponse.data.users
