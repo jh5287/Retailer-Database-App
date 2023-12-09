@@ -1,7 +1,7 @@
 // use this to query your db
+
 import client from "@/db"
 import UsersClient from "@/components/UsersClient"
-
 
 
 const getUsers = async () => {
@@ -24,6 +24,8 @@ const getUsers = async () => {
 
 
 export default async  function Home() {
+
+
   let initialUsers = await getUsers()
   if (initialUsers.length === 1) { 
 
@@ -57,6 +59,7 @@ export default async  function Home() {
 
   return (
     <div className="home">
+      <h1>Users Database</h1>
       <p>Notice that I am an async functional component. This means that I run on the server</p>
       <p>First I fetch all users from the database, and then I pass them as props to a client component</p>
       <UsersClient initialUsers={initialUsers} />
