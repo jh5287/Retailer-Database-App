@@ -5,20 +5,12 @@ import axios from 'axios';
 const GetUserForm = ({setCurrentUser}) => {
   const [id, setId] = useState("");
 
-  const handleInputChange = (e) => {
-    setId(e.target.value);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
         try {
-            console.log("user id ", id)
-            const response = await axios.get("/api/user", {
-                id,
-                username
-            })
-            console.log("response ", response.data.username)
-            const selectedUser = response.data.username;
+            const response = await axios.get(`/api/search/id/${id}`)
+            const selectedUser = response.data.users;
             setCurrentUser(selectedUser);
         }
        
@@ -28,6 +20,7 @@ const GetUserForm = ({setCurrentUser}) => {
            
     
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>

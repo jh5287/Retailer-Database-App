@@ -3,7 +3,7 @@
 const UserDisplay = ({users}) => {
     return (
         <>
-        <h1>Users</h1>
+        <h4>Current Users</h4>
          <ul className="user-list">
         {users.map(user => <li key={user.id}>ID: {user.id} User:{user.username} at {user.email} </li>)}
 

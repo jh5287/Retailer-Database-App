@@ -13,22 +13,13 @@ const DeleteUserForm = ({setUsers}) => {
     e.preventDefault()
         try {
             console.log("user id ", userId)
-            const response = await axios.get("/api/user", {
-                userId,
-            })
-            .then((response) => {
-                console.log(response);
-              }, (error) => {
-                console.log(error);
-              });
-            const selectedUser = response.data.user
+            const response = await axios.get(`/api/search/id/${userId}`);
+            const selectedUser = response.data.users
             console.log("fetched user data by ID ", selectedUser)
             console.log("selected user ", selectedUser)
-            const deletedUser = await axios.delete("/api/user", {
-                selectedUser,
-            })
-            console.log("deleted user ", deletedUser)
-            const usersResponse = await axios.getall("/api/user")
+            const deletedUser = await axios.delete(`api/user/editUser/deleteUser/${selectedUser}`)
+            console.log("deleted user ", deletedUser.data.user)
+            const usersResponse = await axios.get("/api/search/allUsers")
             const users = usersResponse.data.users
             const updatedUsers = users.filter((user) => user.id !== selectedUser)
             setUsers(updatedUsers)
