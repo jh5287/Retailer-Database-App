@@ -3,7 +3,7 @@ import pool from "@/db"
 export async function GET(request, params) {
     try {
         const slug = params.params.slug
-       const query = "SELECT * FROM customer WHERE customer_id = $1"
+       const query = "SELECT * FROM customers WHERE customer_id = $1"
        const results = await pool.query(query, [slug])
         console.log(results.rows)
        return new Response(JSON.stringify({ customer: results.rows[0] }), { status: 200 })

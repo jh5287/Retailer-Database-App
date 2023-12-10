@@ -12,7 +12,7 @@ function CustomerSearchPage() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-        const response = await axios.get(`/api/search/customer/${customerID}`)
+        const response = await axios.get(`/api/customerSearch/${customerID}`)
         const selectedCustomer = response.data.customer;
         console.log(selectedCustomer)
         setCustomer(selectedCustomer);
