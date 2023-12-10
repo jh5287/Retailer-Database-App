@@ -32,6 +32,8 @@ export default async function Home() {
     <div className="home">
       <h1>Retailer Database</h1>
       <ProductDisplay initialProducts={initialProducts} />
+      <a href="/promotions">Browse our promotions for our items!</a>
+      <br/><br/><br/>
       <br/>
       <a href="/customer">Search for a customer</a>
       <p>  OR  </p>
