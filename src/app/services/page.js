@@ -1,5 +1,6 @@
 import { getServices } from "@/models/service";
 
+import BackToHome from "@/components/BackToHome";
 const Page =  async () => {
 
   const services = await getServices();
@@ -13,6 +14,7 @@ const Page =  async () => {
           </li>
         ))}
       </ul>
+            <BackToHome />
     </div>
   );
 };

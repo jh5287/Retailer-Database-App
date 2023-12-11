@@ -9,7 +9,6 @@ const CustomerSearchResults = ({customer} ) => {
          <br/> Email: {customer.email}
          </li>
         </ul>
-        <a href="/..">Go Back</a>
         </>
     )
 

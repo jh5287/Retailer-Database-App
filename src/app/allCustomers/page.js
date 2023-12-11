@@ -1,3 +1,4 @@
+import BackToHome from "@/components/BackToHome";
 import { getCustomers } from "@/models/customer";
 
 const Page = async () => {
@@ -14,6 +15,7 @@ const Page = async () => {
           </li>
         ))}
       </ul>
+      <BackToHome />
     </div>
   );
 };

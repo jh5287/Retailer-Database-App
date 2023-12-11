@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import CustomerSearchResults from '@/components/CustomerSearchResults';
+import BackToHome from '@/components/BackToHome';
 
 function CustomerSearchPage() {
   const [customerID, setCustomerID] = useState('');
@@ -38,6 +39,7 @@ function CustomerSearchPage() {
       </form>
 
     <CustomerSearchResults customer={customer} />
+    <BackToHome/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { getPromotions} from "@/models/promotions";
 import PromotionalItemDisplay from '@/components/PromotionalItemDisplay'
+import BackToHome from "@/components/BackToHome";
 const Page =  async () => {
 
   const promotions = await getPromotions();
@@ -17,6 +18,7 @@ const Page =  async () => {
           </li>
         ))}
       </ol>
+      <BackToHome/>
     </div>
   );
 };
