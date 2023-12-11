@@ -11,7 +11,7 @@ const Page =  async ({params}) => {
         <div>
             <h1>{service}</h1>
             <ul>
-                {employees.map((employee) => <li key={employee.employee_id}>Name: {employee.employee_first_name} <br/>{employee.employee_last_name} Salary: {employee.salary}</li>)}
+                {employees.map((employee) => <li key={employee.employee_id}>Name: {employee.employee_first_name} {employee.employee_last_name} <br/> Salary: {employee.salary}</li>)}
             </ul>
         </div>
     )

@@ -6,7 +6,7 @@ const PromotionalItemDisplay = async ({ promo }) => {
     <ul>
         {foundPromos.map((item) => (
             <li key={item.promo_id}>
-            Product: {item.product_name} <br/>
+            Product: {item.p_name} <br/>
             Original Price: {item.original_price} <br/>
             Discount Rate: {item.discount_rate} <br/>
             Final Price: {item.final_price} <br/>

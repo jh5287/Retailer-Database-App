@@ -1,14 +1,15 @@
+
 const ProductDisplay = ({ initialProducts }) => {
     
   return (
     
-    <div>
-      <table style={{ borderCollapse: "collapse", border: "2px solid rgb(200,200,200)", letterSpacing: "1px",fontSize: "0.8rem"}}>
+    <div style={{display: "inline-block"}}>
+      <table style={{ borderCollapse: "collapse", border: "2px solid rgb(200,200,200)", letterSpacing: "1px",fontSize: "1.2rem"}}>
         <caption style={{padding: "10px"}}>Current Inventory</caption>
         <thead>
           <tr>
             <th>Product</th>
-            <th>Price</th>
+            <th style={{paddingRight: "10px"}}>Price</th>
             <th>Stock</th>
             </tr>
           </thead>
