@@ -1,6 +1,7 @@
 // use this to query your db
 import client from "@/db"
 import ProductDisplay from "@/components/ProductDisplay"
+import OrderPage from "@/components/OrderPage"
 
 
 
@@ -30,16 +31,18 @@ export default async function Home() {
 
   return (
     <div className="home">
-      <h1>Retailer Database</h1>
+      <div className="header" style={{display: "flex", alignItems: "center"}}>
+        <h1 style={{marginRight: "auto"}}>Retailer Database</h1>
+        <div style={{display: "flex", gap: "10px"}}>
+          <a href="/promotions" >Browse our promotions for our items!</a>
+          <a href="/customer">Search for a customer</a>
+          <a href="/allCustomers">Browse all customers</a>
+          <a href="/services">Browse our services</a>
+        </div>
+      </div>
+      
       <ProductDisplay initialProducts={initialProducts} />
-      <a href="/promotions" style={{display: "inline-block", position: "relative",left: "20px", bottom: "50px"}}>Browse our promotions for our items!</a>
-      <br/><br/><br/>
-      <br/>
-      <a href="/customer">Search for a customer</a>
-      <p>  OR  </p>
-      <a href="/allCustomers">Browse all customers</a>
-      <br/><br/><br/>
-      <a href="/services">Browse our services</a>
+      <OrderPage/>
     </div>
   )
 }

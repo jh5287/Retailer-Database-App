@@ -29,7 +29,7 @@ export const getCustomers = async () => {
 
  export const getCustomerOrders = async (id) => {
     const {rows} = await pool.query(
-        "select order_date, pay_date, pay_type, payments.total_amount from orders join payments on orders.pay_id = payments.pay_id where payments.customer_id = $1",
+        `select order_date, pay_date, pay_type, orders.total_amount from orders join payments on orders.pay_id = payments.pay_id where payments.customer_id = $1`,
         [id]
     );
         console.log(rows)

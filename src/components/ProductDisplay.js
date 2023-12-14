@@ -3,7 +3,7 @@ const ProductDisplay = ({ initialProducts }) => {
     
   return (
     
-    <div style={{display: "inline-block"}}>
+    <div>
       <table style={{ borderCollapse: "collapse", border: "2px solid rgb(200,200,200)", letterSpacing: "1px",fontSize: "1.2rem"}}>
         <caption style={{padding: "10px"}}>Current Inventory</caption>
         <thead>
